@@ -20,9 +20,11 @@ public class NextRoom : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        m_MainCamera.GetComponent<Transform>().Translate(deplacement);
-        player.Translate(deplacement / 2);
+        if (other.CompareTag("Player")) {
+            m_MainCamera.GetComponent<Transform>().Translate(deplacement);
+            player.Translate(deplacement / 2);
+        }
     }
 }

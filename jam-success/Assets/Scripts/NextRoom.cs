@@ -22,7 +22,7 @@ public class NextRoom : MonoBehaviour
 
     void OnTriggerEnter2D()
     {
-        m_MainCamera.GetComponent<Transform>().Translate(-deplacement);
-        player.Translate(deplacement / 3);
+        m_MainCamera.GetComponent<Transform>().Translate(deplacement);
+        player.Translate(deplacement / 2);
     }
 }

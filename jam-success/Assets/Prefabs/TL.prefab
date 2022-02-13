@@ -1341,4 +1341,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1f73d947386cb45924f87c5cf06e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deplacement: {x: 0, y: -10, z: 0}
+  deplacement: {x: 0, y: 10, z: 0}

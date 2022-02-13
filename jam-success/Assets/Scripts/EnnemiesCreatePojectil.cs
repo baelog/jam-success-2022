@@ -6,11 +6,14 @@ public class EnnemiesCreatePojectil : MonoBehaviour
 {
     // Start is called before the first frame update
     public Sprite sprite;
+    public float trigger = 4;
+    public GameObject projectil;
+    public EnnemiesStats stats;
+
     private Transform player;
     private Vector3 direction;
-    public int speed;
-    public float trigger = 4;
     private float time = 0.0f;
+    
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -22,7 +25,11 @@ public class EnnemiesCreatePojectil : MonoBehaviour
         time += Time.deltaTime;
         if (time > trigger) {
             time -= trigger;
-            transform.Translate(direction * speed * Time.deltaTime);
+            EnnemieProjectile info = projectil.GetComponent<EnnemieProjectile>();
+            Instantiate(projectil, transform.position, Quaternion.identity);
+            info.projectile = sprite;
+            info.direction = player.position - transform.position;
+            info.projectileSpeed = stats.projectilSpeed;
         }
     }
 }

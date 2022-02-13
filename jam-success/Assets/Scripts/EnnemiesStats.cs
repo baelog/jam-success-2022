@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class EnnemiesStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float speed = 0.5f;
+    public float projectilSpeed = 0.5f;
+    public int vie = 5;
+    public int damage = 1;
 }

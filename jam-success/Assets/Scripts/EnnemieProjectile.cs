@@ -7,7 +7,8 @@ public class EnnemieProjectile : MonoBehaviour
     // Start is called before the first frame update
     public Sprite projectile;
     public Vector3 direction;
-    public int projectileSpeed;
+    public float projectileSpeed = 0.5f;
+
     void Start()
     {
         
@@ -16,6 +17,7 @@ public class EnnemieProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+            transform.Translate(direction * projectileSpeed * Time.deltaTime);
         
     }
 }

@@ -7,8 +7,8 @@ using UnityEngine.Tilemaps;
 public class scriptPlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public int pv;
     private Rigidbody2D rb2d;
-    //public Text displayTips;
     public Animator anim;
     public GameObject projectile;
     
@@ -71,5 +71,11 @@ public class scriptPlayerController : MonoBehaviour
         
         rb2d.AddForce(new Vector2 (movHorizontal * moveSpeed, movVertical * moveSpeed));
         anim.SetFloat("Speedx", rb2d.velocity.x);
+    }
+    public void takeDamage(int damage) {
+        pv -= damage;
+        if (pv <= 0) {
+            Debug.Log("Game Over");
+        }
     }
 }

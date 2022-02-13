@@ -255,7 +255,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &31704439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   anim: {fileID: 31704440}
+  projectile: {fileID: 7471961887352903892, guid: 590db19fdfee17f458a99d84764fc6d0, type: 3}
 --- !u!95 &31704440
 Animator:
   serializedVersion: 3

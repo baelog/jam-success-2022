@@ -13,8 +13,9 @@ public class scriptPlayerController : MonoBehaviour
     
     public static float timer;
     public static bool timeStarted = false;
+    public GameObject projectile;
 
-    void Start() 
+    void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -44,6 +45,18 @@ public class scriptPlayerController : MonoBehaviour
             print("launch trimer");
             timer = 0;
             timeStarted = true;
+        } else if (Input.GetKeyDown(KeyCode.J)) {
+            var newbanana = Instantiate(projectile, new Vector3(transform.position.x - 1.5F, transform.position.y, 0), Quaternion.identity);
+            newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 0;
+        } else if (Input.GetKeyDown(KeyCode.L)) {
+            var newbanana = Instantiate(projectile, new Vector3(transform.position.x + 1.5F, transform.position.y, 0), Quaternion.identity);
+            newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 1;
+        } else if (Input.GetKeyDown(KeyCode.I)) {
+            var newbanana = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 1.5F, 0), Quaternion.identity);
+            newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 3;
+        } else if (Input.GetKeyDown(KeyCode.K)) {
+            var newbanana = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y - 1.5F, 0), Quaternion.identity);
+            newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 2;
         }
         
 

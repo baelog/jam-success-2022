@@ -310,6 +310,9 @@ MonoBehaviour:
   - {fileID: 8996273035114043599, guid: b638b0b4f23f0dc40ad4c3abc86a0d3b, type: 3}
   - {fileID: 4992153497533674132, guid: d0092c102da07104a8208b85d9f0ae69, type: 3}
   - {fileID: 7246069836938521840, guid: ff256bb6cf6dd5b4494eb878b6cda1f7, type: 3}
+  listOfRooms: []
+  boss: {fileID: 0}
+  monster: {fileID: 0}
 --- !u!4 &1725620501
 Transform:
   m_ObjectHideFlags: 0

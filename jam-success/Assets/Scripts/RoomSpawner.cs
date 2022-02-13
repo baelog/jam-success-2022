@@ -47,11 +47,9 @@ public class RoomSpawner : MonoBehaviour
     {
         if (other.CompareTag("Room"))
             Destroy(gameObject);
-        if (other.CompareTag("SpawnPoint")) {
-            if (other.GetComponent<RoomSpawner>().spawned == false && spawned == false) {
-                Destroy(gameObject);
-                print("je susi la");
-            }
+        if (other.CompareTag("SpawnPoint") && other.GetComponent<RoomSpawner>().spawned == false) {
+            spawned = true;
+            Destroy(gameObject);
         }
     }
 }

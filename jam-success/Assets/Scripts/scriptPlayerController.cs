@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class scriptPlayerController : MonoBehaviour
 {
@@ -74,6 +75,7 @@ public class scriptPlayerController : MonoBehaviour
     public void takeDamage(int damage) {
         pv -= damage;
         if (pv <= 0) {
+            SceneManager.LoadScene("Menu");
             Debug.Log("Game Over");
         }
     }

@@ -8,6 +8,8 @@ TagManager:
   - SpawnPoint
   - Rooms
   - Room
+  - Projectile
+  - Ennemies
   layers:
   - Default
   - TransparentFX

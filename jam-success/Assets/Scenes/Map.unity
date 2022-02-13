@@ -311,8 +311,8 @@ MonoBehaviour:
   - {fileID: 4992153497533674132, guid: d0092c102da07104a8208b85d9f0ae69, type: 3}
   - {fileID: 7246069836938521840, guid: ff256bb6cf6dd5b4494eb878b6cda1f7, type: 3}
   listOfRooms: []
-  boss: {fileID: 0}
-  monster: {fileID: 0}
+  boss: {fileID: 5822323825795628044, guid: 1b2d678ed04f2bf4dadefbc0d05be1cc, type: 3}
+  monster: {fileID: 5822323825795628044, guid: 1b2d678ed04f2bf4dadefbc0d05be1cc, type: 3}
 --- !u!4 &1725620501
 Transform:
   m_ObjectHideFlags: 0

@@ -25,8 +25,9 @@ public class EnnemieProjectile : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" || col.gameObject.tag == "Banana") {
             if(col.gameObject.tag == "player") {
-                scriptPlayerController scriptPlayer = col.gameObject.GetComponent<scriptPlayerController>();
-                scriptPlayer.takeDamage(damage);
+                //scriptPlayerController scriptPlayer = col.gameObject.GetComponent<scriptPlayerController>();
+                //scriptPlayer.takeDamage(damage);
+                Debug.Log("je usi la");
             }
         } else {
             Destroy(this.gameObject);

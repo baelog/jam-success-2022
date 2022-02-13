@@ -68,7 +68,6 @@ public class scriptPlayerController : MonoBehaviour
         float movHorizontal = Input.GetAxis("Horizontal");
         float movVertical   = Input.GetAxis("Vertical");
 
-        
         rb2d.AddForce(new Vector2 (movHorizontal * moveSpeed, movVertical * moveSpeed));
         anim.SetFloat("Speedx", rb2d.velocity.x);
     }

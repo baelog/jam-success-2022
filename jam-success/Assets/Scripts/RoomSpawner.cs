@@ -7,7 +7,7 @@ public class RoomSpawner : MonoBehaviour
     public int openingDirenction = 0;
     private RoomTamplate templates;
     private int rand;
-    private bool spawned = false;
+    public bool spawned = false;
 
     void Start()
     {
@@ -19,34 +19,39 @@ public class RoomSpawner : MonoBehaviour
     void Spawn()
     {
         if (spawned == false) {
-            if (openingDirenction == 1) {
+            if (openingDirenction == 2) {
                 rand = Random.Range(0, templates.bottomRooms.Length);
                 Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
                 // BOTTOM
             }
-            if (openingDirenction == 2) {
+            if (openingDirenction == 1) {
                 // TOP
                 rand = Random.Range(0, templates.topRooms.Length);
                 Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
             }
-            if (openingDirenction == 3) {
+            if (openingDirenction == 4) {
                 // LEFT
                 rand = Random.Range(0, templates.leftRooms.Length);
                 Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
             }
-            if (openingDirenction == 4) {
+            if (openingDirenction == 3) {
                 // RIGHT
                 rand = Random.Range(0, templates.rightRooms.Length);
                 Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
             }
+            spawned = true;
         }
-        spawned = true;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("SpawnPoint") && other.GetComponent<RoomSpawner>().spawned == true) {
+        if (other.CompareTag("Room"))
             Destroy(gameObject);
+        if (other.CompareTag("SpawnPoint")) {
+            if (other.GetComponent<RoomSpawner>().spawned == false && spawned == false) {
+                Destroy(gameObject);
+                print("je susi la");
+            }
         }
     }
 }

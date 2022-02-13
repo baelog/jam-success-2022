@@ -12,6 +12,7 @@ public class ScriptBananaLaunched : MonoBehaviour
     private float startPos;
     public int newMoveDir;
     private int moveDir; // 0 = -x, 1 = +x, 2 = -y, default = +y
+    public float speed;
 
 
     // Start is called before the first frame update
@@ -19,7 +20,6 @@ public class ScriptBananaLaunched : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         moveDir = newMoveDir;
-        print(moveDir);
         switch(moveDir)
         {
             case 0:
@@ -45,7 +45,7 @@ public class ScriptBananaLaunched : MonoBehaviour
             case 0:
                 if (Mathf.Abs(transform.position.x - startPos) <= moveRange)
                 {
-                    transform.position = new Vector3 (transform.position.x - 0.01F, transform.position.y, 0);
+                    transform.position = new Vector3 (transform.position.x - speed, transform.position.y, 0);
                 } else {
                     Destroy(gameObject);
                 }
@@ -53,7 +53,7 @@ public class ScriptBananaLaunched : MonoBehaviour
             case 1:
                 if (Mathf.Abs(transform.position.x - startPos) <= moveRange)
                 {
-                    transform.position = new Vector3 (transform.position.x + 0.01F, transform.position.y, 0);
+                    transform.position = new Vector3 (transform.position.x + speed, transform.position.y, 0);
                 } else {
                     Destroy(gameObject);
                 }
@@ -61,7 +61,7 @@ public class ScriptBananaLaunched : MonoBehaviour
             case 2:
                 if (Mathf.Abs(transform.position.y - startPos) <= moveRange)
                 {
-                    transform.position = new Vector3 (transform.position.x, transform.position.y - 0.01F, 0);
+                    transform.position = new Vector3 (transform.position.x, transform.position.y - speed, 0);
                 } else {
                     Destroy(gameObject);
                 }
@@ -69,11 +69,23 @@ public class ScriptBananaLaunched : MonoBehaviour
             default:
                 if (Mathf.Abs(transform.position.y - startPos) <= moveRange)
                 {
-                    transform.position = new Vector3 (transform.position.x, transform.position.y + 0.01F, 0);
+                    transform.position = new Vector3 (transform.position.x, transform.position.y + speed, 0);
                 } else {
                     Destroy(gameObject);
                 }
                 break;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D target)
+    {
+        if (target.gameObject.tag != "Projectile")
+        {
+            if (target.gameObject.tag == "Ennemies")
+            {
+                Debug.Log("Retirer un PV à un ennemie");
+            }
+            Destroy(gameObject);
         }
     }
 }

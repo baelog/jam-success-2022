@@ -10,96 +10,66 @@ public class scriptPlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     //public Text displayTips;
     public Animator anim;
-    
-    public static float timer;
-    public static bool timeStarted = false;
     public GameObject projectile;
+    
+    private static float timerBana;
+    private static bool timeStartedBana = false;
+    private static float timerDash;
+    private static bool timeStartedDash = false;
 
-    void Start()
-    {
+    void Start(){
         rb2d = GetComponent<Rigidbody2D>();
     }
-
     void Update() {
-
-        if (timeStarted == true) 
-        {
-            timer += Time.deltaTime;
-            print(timer);
-        }       
+        if (timeStartedBana == true) {
+            timerBana += Time.deltaTime;
+        }
+        if (timeStartedDash == true) {
+            timerDash += Time.deltaTime;
+        }
+        if (timeStartedBana == false) {
+            if (Input.GetKeyDown(KeyCode.K)) {
+                var newbanana = Instantiate(projectile, new Vector3(transform.position.x - 1.5F, transform.position.y, 0), Quaternion.identity);
+                newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 0;
+                timeStartedBana = true;
+                timerBana = 0;
+            } else if (Input.GetKeyDown(KeyCode.M)) {
+                var newbanana = Instantiate(projectile, new Vector3(transform.position.x + 1.5F, transform.position.y, 0), Quaternion.identity);
+                newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 1;
+                timeStartedBana = true;
+                timerBana = 0;
+            } else if (Input.GetKeyDown(KeyCode.O)) {
+                var newbanana = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 1.5F, 0), Quaternion.identity);
+                newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 3;
+                timeStartedBana = true;
+                timerBana = 0;
+            } else if (Input.GetKeyDown(KeyCode.L)) {
+                var newbanana = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y - 1.5F, 0), Quaternion.identity);
+                newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 2;
+                timeStartedBana = true;
+                timerBana = 0;
+            } else if (Input.GetKeyDown(KeyCode.Space)) {
+                timeStartedDash = true;
+                timerDash = 0;
+                moveSpeed *= 100;
+            }
+        }
+        if (timeStartedBana == true && (timerBana%60) >= 0.3F) {
+            timeStartedBana = false;
+        }
+        if (timeStartedDash == true && (timerDash%60) >= 0.2F) {
+            timeStartedDash = false;
+            moveSpeed /= 100;
+            rb2d.velocity = new Vector2 (0.0F, 0.0F);
+        }
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         float movHorizontal = Input.GetAxis("Horizontal");
         float movVertical   = Input.GetAxis("Vertical");
 
-        if (timeStarted == true && (timer%60) >= 1) {
-            timeStarted = false;
-            moveSpeed = 5;
-            print("end trimer");
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && timeStarted == false)//dash
-        {
-            moveSpeed = 50;
-            print("launch trimer");
-            timer = 0;
-            timeStarted = true;
-        } else if (Input.GetKeyDown(KeyCode.J)) {
-            var newbanana = Instantiate(projectile, new Vector3(transform.position.x - 1.5F, transform.position.y, 0), Quaternion.identity);
-            newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 0;
-        } else if (Input.GetKeyDown(KeyCode.L)) {
-            var newbanana = Instantiate(projectile, new Vector3(transform.position.x + 1.5F, transform.position.y, 0), Quaternion.identity);
-            newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 1;
-        } else if (Input.GetKeyDown(KeyCode.I)) {
-            var newbanana = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 1.5F, 0), Quaternion.identity);
-            newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 3;
-        } else if (Input.GetKeyDown(KeyCode.K)) {
-            var newbanana = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y - 1.5F, 0), Quaternion.identity);
-            newbanana.GetComponent<ScriptBananaLaunched>().newMoveDir = 2;
-        }
         
-
         rb2d.AddForce(new Vector2 (movHorizontal * moveSpeed, movVertical * moveSpeed));
         anim.SetFloat("Speedx", rb2d.velocity.x);
-    }
-
-    void OnTriggerEnter2D(Collider2D other) 
-    {
-        /*if (other.gameObject.CompareTag("Tips"))
-        {
-            Destroy(other.gameObject);
-            GlobalesVariables.lettre = GlobalesVariables.lettre + 1;
-            switch (GlobalesVariables.lettre)
-            {
-                case 1:
-                    displayTips.text = "Indices pour le mot de passe:\nEncrypté: f _ _ _ _ _ _ _";
-                    break;
-                case 2:
-                    displayTips.text = "Indices pour le mot de passe:\nEncrypté: f r _ _ _ _ _ _";
-                    break;
-                case 3:
-                    displayTips.text = "Indices pour le mot de passe:\nEncrypté: f r p _ _ _ _ _";
-                    break;
-                case 4:
-                    displayTips.text = "Indices pour le mot de passe:\nEncrypté: f r p s _ _ _ _";
-                    break;
-                case 5:
-                    displayTips.text = "Indices pour le mot de passe:\nEncrypté: f r p s x _ _ _";
-                    break;
-                case 6:
-                    displayTips.text = "Indices pour le mot de passe:\nEncrypté: f r p s x w _ _";
-                    break;
-                case 7:
-                    displayTips.text = "Indices pour le mot de passe:\nEncrypté: f r p s x w h _";
-                    break;
-                case 8:
-                    displayTips.text = "Indices pour le mot de passe:\nEncrypté: f r p s x w h u";
-                    break;
-                case 9:
-                    displayTips.text = "Indices pour le mot de passe:\nDécrypté: c o m p u t e r";
-                    break;
-            }
-        }*/
     }
 }

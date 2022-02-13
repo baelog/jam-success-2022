@@ -83,7 +83,7 @@ public class ScriptBananaLaunched : MonoBehaviour
         {
             if (target.gameObject.tag == "Ennemies")
             {
-                Debug.Log("Retirer un PV à un ennemie");
+                target.gameObject.GetComponent<EnnemiesTakeDamage>().takedamage(1);
             }
             Destroy(gameObject);
         }

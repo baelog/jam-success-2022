@@ -24,13 +24,13 @@ public class EnnemieProjectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player" || col.gameObject.tag == "Banana") {
-            if(col.gameObject.tag == "player") {
+            if(col.gameObject.tag == "Player") {
                 //scriptPlayerController scriptPlayer = col.gameObject.GetComponent<scriptPlayerController>();
-                //scriptPlayer.takeDamage(damage);
-                Debug.Log("je usi la");
+                col.gameObject.GetComponent<scriptPlayerController>().takeDamage(damage);
             }
+            Destroy(this.gameObject);
+        } else if (col.gameObject.tag != "Ennemies") {
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
-        Debug.Log("OnCollisionEnter2D");
     }
 }

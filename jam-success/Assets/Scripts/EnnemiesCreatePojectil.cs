@@ -23,12 +23,12 @@ public class EnnemiesCreatePojectil : MonoBehaviour
     {
         time += Time.deltaTime;
         if (time >= trigger) {
-            Debug.Log(time);
+            
             EnnemieProjectile info = projectil.GetComponent<EnnemieProjectile>();
-            Instantiate(projectil, transform.position, Quaternion.identity);
             info.projectile = sprite;
             info.direction = player.position - transform.position;
             info.projectileSpeed = stats.projectilSpeed;
+            Instantiate(projectil, transform.position, Quaternion.identity);
             time = 0.0f;
         }
     }

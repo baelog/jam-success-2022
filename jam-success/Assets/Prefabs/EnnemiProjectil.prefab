@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1561784996172582173, guid: 98538c1f203fc2348857057feb06ea49, type: 3}
-  direction: {x: -34.094337, y: -17.215, z: 0}
+  direction: {x: 5.2578645, y: 1.9748472, z: 0}
   projectileSpeed: 0.5
   damage: 1
 --- !u!61 &-1384812481729235511

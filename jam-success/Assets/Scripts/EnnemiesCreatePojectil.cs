@@ -19,17 +19,30 @@ public class EnnemiesCreatePojectil : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
+    bool OnTheRoom()
+    {
+        // if (x > x1 && x < x2 && y > y1 && y < y2)
+        //     return true;
+ 
+        // return false;
+        if (player.position.x > transform.position.x - 9 && player.position.y > transform.position.y - 5 && player.position.x < transform.position.x + 9 && player.position.y < transform.position.y + 5)
+            return true;
+        return false;
+    }
+
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= trigger) {
-            
-            EnnemieProjectile info = projectil.GetComponent<EnnemieProjectile>();
-            info.projectile = sprite;
-            info.direction = player.position - transform.position;
-            info.projectileSpeed = stats.projectilSpeed;
-            Instantiate(projectil, transform.position, Quaternion.identity);
-            time = 0.0f;
+        if (OnTheRoom() == true) {
+            time += Time.deltaTime;
+            if (time >= trigger) {
+                EnnemieProjectile info = projectil.GetComponent<EnnemieProjectile>();
+                info.projectile = sprite;
+                info.direction = player.position - transform.position;
+                info.projectileSpeed = stats.projectilSpeed;
+                Instantiate(projectil, transform.position, Quaternion.identity);
+                time = 0.0f;
+                Debug.Log("je tire");
+            }
         }
     }
 }

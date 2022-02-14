@@ -7,6 +7,6 @@ public class GoToMenu : MonoBehaviour
 {
     void OnDestroy()
     {
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("Menu");
     }
 }

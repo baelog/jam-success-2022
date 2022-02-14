@@ -16,6 +16,7 @@ public class RoomTamplate : MonoBehaviour
     public GameObject boss;
     public GameObject monster;
 
+
     void Update()
     {
         if (waitTime < 0) {
@@ -26,6 +27,7 @@ public class RoomTamplate : MonoBehaviour
                     Instantiate(monster, new Vector3(listOfRooms[i].transform.position.x, listOfRooms[i].transform.position.y, 0), Quaternion.identity);
                 }
             }
+            Destroy(this.gameObject);
         } else {
             waitTime -= Time.deltaTime;
         }

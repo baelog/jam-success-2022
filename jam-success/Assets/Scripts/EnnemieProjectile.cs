@@ -29,9 +29,8 @@ public class EnnemieProjectile : MonoBehaviour
                 //scriptPlayer.takeDamage(damage);
                 Debug.Log("je usi la");
             }
-        } else {
-            Destroy(this.gameObject);
         }
+        Destroy(this.gameObject);
         Debug.Log("OnCollisionEnter2D");
     }
 }

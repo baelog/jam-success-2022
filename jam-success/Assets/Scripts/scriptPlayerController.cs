@@ -18,9 +18,10 @@ public class scriptPlayerController : MonoBehaviour
     private static float timerDash;
     private static bool timeStartedDash = false;
 
-    void Start(){
+    void Start() {
         rb2d = GetComponent<Rigidbody2D>();
     }
+    
     void Update() {
         if (timeStartedBana == true) {
             timerBana += Time.deltaTime;
